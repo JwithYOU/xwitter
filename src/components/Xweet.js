@@ -46,6 +46,9 @@ const Xweet = ({ xweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{xweetObj.text}</h4>
+          {xweetObj.attachmentUrl && (
+            <img src={xweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete Xweet</button>
