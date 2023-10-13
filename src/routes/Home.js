@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "fbase";
+import Xweet from "components/Xweet";
 
 const Home = ({ userObj }) => {
   const [xweet, setXweet] = useState("");
@@ -45,9 +46,11 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {xeets.map((xweet) => (
-          <div key={xweet.id}>
-            <h4>{xweet.text}</h4>
-          </div>
+          <Xweet
+            key={xweet.id}
+            xweetObj={xweet}
+            isOwner={xweet.creatorId === userObj.uid}
+          />
         ))}
       </div>
     </div>
