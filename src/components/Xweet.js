@@ -26,6 +26,7 @@ const Xweet = ({ xweetObj, isOwner }) => {
     } = event;
     setNewXweet(value);
   };
+
   return (
     <div>
       {editing ? (
