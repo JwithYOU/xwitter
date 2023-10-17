@@ -16,9 +16,9 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <XweetFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {xeets.map((xweet) => (
           <Xweet
             key={xweet.id}
