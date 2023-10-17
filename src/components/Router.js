@@ -10,7 +10,7 @@ import Home from "routes/Home";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 
-const AppRouter = ({ isLogginIn, userObj }) => {
+const AppRouter = ({ isLogginIn, userObj, refreshUser }) => {
   return (
     <Router>
       {isLogginIn && <Navigation userObj={userObj} />}
@@ -21,7 +21,7 @@ const AppRouter = ({ isLogginIn, userObj }) => {
               <Home userObj={userObj} />
             </Route>
             <Route exact path="/profile">
-              <Profile userObj={userObj} />
+              <Profile userObj={userObj} refreshUser={refreshUser} />
             </Route>
             <Redirect from="*" to="/" />
           </>
