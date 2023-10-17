@@ -1,33 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { authService, firebaseInstance } from "fbase";
+import AuthForm from "components/AuthForm";
 
 const Auth = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [newAccount, setNewAccout] = useState(true);
-  const [error, setError] = useState("");
-  const onChange = (event) => {
-    const {
-      target: { name, value },
-    } = event;
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    }
-  };
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      if (newAccount) {
-        await authService.createUserWithEmailAndPassword(email, password);
-      } else {
-        await authService.signInWithEmailAndPassword(email, password);
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
   const onSocialClick = async (event) => {
     const {
       target: { name },
@@ -41,28 +16,7 @@ const Auth = () => {
   };
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          autoComplete="username"
-          required
-          value={email}
-          onChange={onChange}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={onChange}
-        />
-        <input type="submit" value={newAccount ? "new Account" : "Log In"} />
-        {error}
-      </form>
+      <AuthForm />
       <div>
         <button name="Goggle" onClick={onSocialClick}>
           Continue with Google
