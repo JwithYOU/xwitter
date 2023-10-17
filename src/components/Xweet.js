@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 
 const Xweet = ({ xweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -9,6 +9,7 @@ const Xweet = ({ xweetObj, isOwner }) => {
     const ok = window.confirm("Are you sure you want to delete this xweet?");
     if (ok) {
       await dbService.doc(`xweets/${xweetObj.id}`).delete();
+      await storageService.refFromURL(xweetObj.attachmentUrl).delete();
     }
   };
   const toggleEditing = () => setEditing((prev) => !prev);
